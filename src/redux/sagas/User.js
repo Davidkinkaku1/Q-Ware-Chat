@@ -1,7 +1,8 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
-function* UserLinkPost (){
+function* userLinkPost (action){
+    // posting the created link from generator into the converstaion table
     try {
         yield axios.post('/api/links', action.payload);
         yield put({ type: 'FETCH_LINKS' });
@@ -9,7 +10,8 @@ function* UserLinkPost (){
         console.log("Error FETCHING LINKS for USER post", err);
     }
 }
-function* UserLinkGet (){
+function* userLinkGet (action){
+    console.log('SAGA gets list of links as  action: ', action);
     try {
         const UserLinks = yield axios.get('/api/links');
         console.log('get all user LINKS:', UserLinks.data);
@@ -20,10 +22,10 @@ function* UserLinkGet (){
     }
 }
 
-function* UserSaga (){
-    yield takeLatest('FETCH_LINK', UserLinkPost)
-    yield takeLatest('SET_LINKS', UserLinkGet)
+function* userSaga (){
+    yield takeLatest('FETCH_LINK', userLinkPost)
+    yield takeLatest('SET_LINKS', userLinkGet)
     
     }
     
-    export default UserSaga;
+    export default userSaga;
