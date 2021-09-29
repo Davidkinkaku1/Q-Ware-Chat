@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 /**
- * GET route template
+ * GET route template MESSAGES
  */
 router.get('/:id', (req, res) => {
   // GET route code here
@@ -61,9 +61,9 @@ router.delete('/:id',  (req, res) => { //calling the database
     })
 });
 
-//delete by id 
+//delete by id url/chat
 // localhost:5000/songs/delete/2
-router.delete('/:id',  (req, res) => { //calling the database
+router.delete('/chat/:id',  (req, res) => { //calling the database
     let conversationId = req.params.id;
     
     console.log('this is the convo id', conversationId);
