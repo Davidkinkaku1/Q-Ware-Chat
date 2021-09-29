@@ -1,12 +1,5 @@
-import { combineReducers } from 'redux';
 
-const adminDeleteReducer = (state = [], action) => {
-    if (action.type === 'DELETE_URL') {
-        // take out the object with the id that comes in on the payload
-        return state.filter(conversation => conversation.id !== action.payload.id);
-    }
 
-} // end of delete chat reducer
 
 const adminGetReducer = (state =[], action) => {
     if (action.type === 'SET_ADMIN_LIST') {
@@ -18,7 +11,4 @@ const adminGetReducer = (state =[], action) => {
 
 
 
-export default combineReducers({
-    adminDeleteReducer,
-    adminGetReducer,
-  });
+export default adminGetReducer;
