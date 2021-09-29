@@ -19,7 +19,6 @@ router.get('/', (req, res) => {
     });
 });
 
-
 /**
  * DELETE route template
  */
