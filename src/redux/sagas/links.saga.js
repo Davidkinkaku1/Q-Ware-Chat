@@ -13,19 +13,19 @@ function* userLinkPost (action){
 function* userLinkGet (action){
     console.log('SAGA gets list of links as  action: ', action);
     try {
-        const UserLinks = yield axios.get('/api/link');
-        console.log('get all user LINKS:', UserLinks.data);
-        yield put({ type: 'SET_LINKS', payload: UserLinks.data });
+        const userLinks = yield axios.get('/api/link');
+        console.log('get all user LINKS:', userLinks.data);
+        yield put({ type: 'SET_LINKS', payload: userLinks.data });
 
     } catch {
         console.log('getting for user LINKS error');
     }
 }
 
-function* userSaga (){
+function* userLinksSaga (){
     yield takeLatest('ADD_LINK', userLinkPost)
     yield takeLatest('FETCH_LINKS', userLinkGet)
     
     }
     
-    export default userSaga;
+    export default userLinksSaga;
