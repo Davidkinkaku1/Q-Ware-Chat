@@ -26,11 +26,11 @@ router.get('/', (req, res) => {
 
 //delete by id 
 // localhost:5000/songs/delete/2
-router.delete('/delete/:id',  (req, res) => { //calling the database
-    let songId = req.params.id;
-    console.log(songId);
+router.delete('/:id',  (req, res) => { //calling the database
+    let conversationId = req.params.id;
+    console.log(conversationId);
     let queryText = `DELETE FROM "conversation" WHERE "id" = $1;`; 
-    pool.query(queryText, [songId])
+    pool.query(queryText, [conversationId])
     .then((result) => {
         res.sendStatus(204);
     }).catch((err) => {

@@ -11,6 +11,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const linkRouter = require('./routes/template.router');
 const adminRouter = require('./routes/admin.router');
+const chatPageRouter = require('./routes/chat.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -30,6 +31,10 @@ app.use('/api/user', userRouter);
 app.use('/api/all', adminRouter);
 // get all the links from a specific user from  (conversation table) by user id.
 app.use('/api/link', linkRouter);
+// chatpage router, where all the routes going within the chatespage happens
+app.use('/api/chat', chatPageRouter);
+
+
 
 
 // Serve static files
