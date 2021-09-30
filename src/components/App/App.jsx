@@ -23,6 +23,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
 import AdminPage from '../AdminPage/AdminPage';
+import Chat from '../Chat/Chat';
 
 function App() {
   const dispatch = useDispatch();
@@ -75,6 +76,13 @@ function App() {
             path="/admin"
           >
             <AdminPage />
+          </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/chat"
+          >
+            <Chat />
           </ProtectedRoute>
 
           <Route
@@ -132,6 +140,21 @@ function App() {
               <LandingPage />
             }
           </Route>
+
+          <Route
+            exact
+            path="/chat"
+          >
+            {user.id ?
+              // If the user is already logged in, 
+              // redirect them to the /user page
+              <Redirect to="/chat" />
+              :
+              // Otherwise, show the Landing page
+              <LandingPage />
+            }
+          </Route>
+        
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

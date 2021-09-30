@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
 // localhost:5000/songs/delete/2
 router.delete('/:id',  (req, res) => { //calling the database
     let conversationId = req.params.id;
-    console.log(conversationId);
+    console.log('CONVERSATION ID: ', conversationId);
     let queryText = `DELETE FROM "conversation" WHERE "id" = $1;`; 
     pool.query(queryText, [conversationId])
     .then((result) => {

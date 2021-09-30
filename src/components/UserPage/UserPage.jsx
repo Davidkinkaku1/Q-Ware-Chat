@@ -14,6 +14,21 @@ function UserPage() {
     dispatch({ type: "FETCH_LINKS" });
   }, []);
 
+  const removeUrl = (id) => {
+
+
+    // should be able refresh the page
+    // delete the object that it's tagerting by id
+    // do the axios call
+    console.log(' inside the submit button ')
+    
+    // doing the delete axios to delete the url
+    dispatch({ type: "DELETE_URL", payload: id })
+    dispatch({ type: "FETCH_LINKS" });
+    
+
+  };
+
   return (
     <>
       <div className="container">
@@ -27,7 +42,9 @@ function UserPage() {
         <br />
         <p>These are all your Q-Ware Chats!</p>
         {userLinks.map((link, i) => (
-          <li key={i}> {link.url} </li>
+          <li key={i}> {link.url} 
+           {<button onClick={() =>removeUrl(link.id)}>delete</button>}
+          </li>
         ))}
       </div>
     </>

@@ -12,9 +12,9 @@ function* postMessages (action){
 } // end of postMessage 
 
 function* fetchMessages (action){
-    console.log('SAGA gets list of links as  action: ', action);
+    console.log('SAGA gets list of message as  action: ', action);
     try {
-        const setMessages = yield axios.get('/api/chat');
+        const setMessages = yield axios.get('/api/chat/20');
         console.log('get all message for the url:', setMessages.data);
         yield put({ type: 'SET_MESSAGES', payload: setMessages.data });
 
