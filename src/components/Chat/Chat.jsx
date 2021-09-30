@@ -39,7 +39,12 @@ function Chat() {
 const isAnswered = (id) => {
     // event.preventDefault();
     dispatch({ type: "CHANGE_ANSWER", payload:id})
+    
+}
 
+const deleteMessage = (id) => {
+    // event.preventDefault();
+    dispatch({ type: "DELETE_MESSAGE", payload:id})
 }
 
   return (
@@ -51,7 +56,7 @@ const isAnswered = (id) => {
           { allMessages.map((message, i) => <li key={i}>
               {message.message} 
               <button onClick={() =>isAnswered(message.id)}>Answered</button>
-              <button onClick={() =>isAnswered(message.id)}>delete</button>
+              <button onClick={() =>deleteMessage(message.id)}>delete</button>
               </li>) }</div>
       <div>
 
