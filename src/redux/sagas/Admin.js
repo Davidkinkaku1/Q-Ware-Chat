@@ -29,7 +29,6 @@ function* adminGet (){
     }
 }
 
-
 function* AdminSaga (){
 yield takeLatest('DELETE_URL', adminDelete);
 yield takeLatest('FETCH_ADMIN_LIST', adminGet);
