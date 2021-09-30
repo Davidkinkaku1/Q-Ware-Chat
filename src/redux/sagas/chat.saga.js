@@ -14,7 +14,7 @@ function* postMessages (action){
 function* fetchMessages (action){
     console.log('SAGA gets list of message as  action: ', action);
     try {
-        const setMessages = yield axios.get('/api/chat/20');
+        const setMessages = yield axios.get(`/api/chat/${action.payload}`);
         console.log('get all message for the url:', setMessages.data);
         yield put({ type: 'SET_MESSAGES', payload: setMessages.data });
 
@@ -58,7 +58,7 @@ function* deleteChat (action){
 
 // This saga does the update of answer and unanswer
 function* answerMessage (action){
-    console.log('the deleted chat is ', action)
+    console.log('the changed message is ', action)
 
     try {
         const changeAnswere = yield axios.put(`/api/chat/${action.payload}`);

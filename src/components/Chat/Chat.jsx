@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 function Chat() {
   // calling in the store where messages are being store
@@ -9,7 +10,10 @@ function Chat() {
 
   // setting a state for my messages.
   let [newMessage, setNewMessage] = useState('');
-
+  let [isAnswer, setIsAnswer] = useState(false);
+  useEffect(() => {
+    dispatch({ type: "FETCH_MESSAGES" });
+  }, []);
 
   const handleNewMessage = (event) => {
     console.log("event happened");
@@ -32,9 +36,10 @@ function Chat() {
     // newMessage('');
   };
 
-const isAnswered = (event) => {
-    event.preventDefault();
-    dispatch({ type: "CHANGE_ANSWER", payload: id})
+const isAnswered = (id) => {
+    // event.preventDefault();
+    dispatch({ type: "CHANGE_ANSWER", payload:id})
+
 }
 
   return (
@@ -43,7 +48,11 @@ const isAnswered = (event) => {
         <h2>Q-ware</h2>
       </center>
       <div>
-          { allMessages.map((message) => <li>{message.message} </li>) }</div>
+          { allMessages.map((message, i) => <li key={i}>
+              {message.message} 
+              <button onClick={() =>isAnswered(message.id)}>Answered</button>
+              <button onClick={() =>isAnswered(message.id)}>delete</button>
+              </li>) }</div>
       <div>
 
         <form onSubmit={addNewMessage}>

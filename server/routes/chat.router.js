@@ -10,7 +10,7 @@ router.get('/:id', (req, res) => {
   // this gets all my links from the 
   // SELECT * FROM "conversation" where "user_id" ="req.user.id" order by "id";
 console.log('this is my chat id', req.params.id)
-  let queryText = `SELECT "message"."message", "message"."is_answered", "message"."sent_at" FROM "message"
+  let queryText = `SELECT * FROM "message"
   WHERE "conversation_id" =$1
   ORDER BY "id";`; 
     pool.query(queryText,[req.params.id])
