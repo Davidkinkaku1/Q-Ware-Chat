@@ -17,19 +17,24 @@ function AdminPage() {
   }, []);
 
   const removeUrl = (id) => {
-
-
     // should be able refresh the page
     // delete the object that it's tagerting by id
-    // do the axios call
     console.log(' inside the submit button ')
     
     // doing the delete axios to delete the url
     dispatch({ type: "DELETE_URL", payload: id })
     dispatch({ type: "FETCH_ADMIN_LIST" });
-    
-
   };
+
+
+// **************RANDOMIZING LINKS AND SENDING IT TO POST FUNCTION**************** //
+ const randomizeLink = () => {
+   
+ }
+
+
+
+
 
   return (
     <>
