@@ -4,11 +4,11 @@ import axios from 'axios';
 
 
 // Addmin is deleting the url
-function* adminDelete (){
+function* adminDelete (action){
     try {
         // Dispatch MUST make sure the payload is the id of what we want to delete
         const conversationId = action.payload;
-        yield axios.delete(`/api/all${conversationId}`); // DELETE the url/chat
+        yield axios.delete(`/api/all/${conversationId}`); // DELETE the url/chat
         yield put({ type: 'FETCH_ADMIN_LIST' }); // REFRESH the ADMINLIST in redux
       } catch (err) {
         console.log('Error DELETING URL', err);

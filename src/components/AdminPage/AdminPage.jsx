@@ -2,7 +2,7 @@ import React from "react";
 import LogOutButton from "../LogOutButton/LogOutButton";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import axios from "axios";
+// import axios from "axios";
 
 function AdminPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -14,12 +14,10 @@ function AdminPage() {
 
   useEffect(() => {
     dispatch({ type: "FETCH_ADMIN_LIST" });
-    dispatch({ type: "DELETE_URL"});
-
   }, []);
 
-  const onSubmit = (event, action) => {
-    event.preventDefault();
+  const removeUrl = (id) => {
+
 
     // should be able refresh the page
     // delete the object that it's tagerting by id
@@ -27,14 +25,12 @@ function AdminPage() {
     console.log(' inside the submit button ')
     
     // doing the delete axios to delete the url
-    axios.delete(`/api/all/${action.payload}`)
-    .then( response => { props.refreshArtists() })
-    .catch( error => { console.log('error on delete: ', error) })
-    dispatch({ type: "DELETE_URL", payload })
-    console.log(' inside the submit button done ')
+    dispatch({ type: "DELETE_URL", payload: id })
+    dispatch({ type: "FETCH_ADMIN_LIST" });
+    
 
   };
-  
+
   return (
     <>
       <div className="admin-container">
@@ -57,13 +53,13 @@ function AdminPage() {
             </tr>
           </thead>
           <tbody>
-            {allUsersUrl.map((user, i) => {
+            {allUsersUrl.map((item, i) => {
               return (
                 <tr key={i}>
-                  <td>{user.id}</td>
-                  <td>{user.username}</td>
-                  <td>{user.url}</td>
-                  <td>{<button onClick={onSubmit}>delete</button>}</td>
+                  <td>{item.id}</td>
+                  <td>{item.username}</td>
+                  <td>{item.url}</td>
+                  <td>{<button onClick={() =>removeUrl(item.conversation_id)}>delete</button>}</td>
                 </tr>
               );
             })}
