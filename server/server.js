@@ -35,8 +35,6 @@ app.use('/api/link', linkRouter);
 app.use('/api/chat', chatPageRouter);
 
 
-
-
 // Serve static files
 app.use(express.static('build'));
 
