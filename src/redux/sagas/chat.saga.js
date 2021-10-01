@@ -14,7 +14,7 @@ function* postMessages (action){
 function* fetchMessages (action){
     console.log('SAGA gets list of message as  action: ', action);
     try {
-        const setMessages = yield axios.get(`/api/chat/${action.payload}`);
+        const setMessages = yield axios.get(`/api/chat/15`);
         console.log('get all message for the url:', setMessages.data);
         yield put({ type: 'SET_MESSAGES', payload: setMessages.data });
 
