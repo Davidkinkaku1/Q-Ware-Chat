@@ -27,15 +27,6 @@ function AdminPage() {
   };
 
 
-// **************RANDOMIZING LINKS AND SENDING IT TO POST FUNCTION**************** //
- const randomizeLink = () => {
-   
- }
-
-
-
-
-
   return (
     <>
       <div className="admin-container">

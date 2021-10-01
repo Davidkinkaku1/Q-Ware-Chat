@@ -1,7 +1,7 @@
 import React from "react";
 import LogOutButton from "../LogOutButton/LogOutButton";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -29,6 +29,28 @@ function UserPage() {
 
   };
 
+
+
+// **************RANDOMIZING LINKS AND SENDING IT TO POST FUNCTION**************** //
+let [newUrl, setNewUrl] = useState('Your new would appear link here')
+
+const randomizeLink = (event) => {
+event.preventDefault();
+  // setting a random variable that generates random numbers between 0-1500 
+  const randomLink = "http://localhost:3000/#/chat" + Math.floor(Math.random() * 1000);
+  console.log(randomLink);
+  setNewUrl(randomLink);
+
+  dispatch({ type: "ADD_LINK", payload:{
+    url: newUrl, 
+    user_id: 1
+  }})
+ }
+
+
+
+
+
   return (
     <>
       <div className="container">
@@ -37,8 +59,12 @@ function UserPage() {
         <LogOutButton className="btn" />
       </div>
       <br />
+      <div className="linker">
+        <button onClick={randomizeLink}>Start a Q-Ware Rom</button>
+        <h5>{newUrl}</h5><button onClick={() => navigator.clipboard.writeText(newUrl)}>copy link</button>
+      </div>
       <div>
-        <button>Start a Q-Ware Rom</button>
+        
         <br />
         <p>These are all your Q-Ware Chats!</p>
         {userLinks.map((link, i) => (
