@@ -34,16 +34,16 @@ function UserPage() {
 // **************RANDOMIZING LINKS AND SENDING IT TO POST FUNCTION**************** //
 let [newUrl, setNewUrl] = useState('Your new would appear link here')
 
-const randomizeLink = (event) => {
+const randomizeLink = (event,id) => {
 event.preventDefault();
   // setting a random variable that generates random numbers between 0-1500 
-  const randomLink = "http://localhost:3000/#/chat" + Math.floor(Math.random() * 1000);
+  const randomLink = "http://localhost:3000/#/chat/" + Math.floor(Math.random() * 1000);
   console.log(randomLink);
   setNewUrl(randomLink);
 
   dispatch({ type: "ADD_LINK", payload:{
     url: newUrl, 
-    user_id: 1
+    user_id: id
   }})
  }
 
