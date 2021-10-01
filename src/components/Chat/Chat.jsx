@@ -10,9 +10,7 @@ function Chat() {
   const dispatch = useDispatch();
   let params = useParams();
   let { chatId } = params;
-  // let currentChat = allMessages.find(chat => chat.id === Number(chatId));
-  // console.log(`this is the chat`,currentChat);
-  // console.log(`this is the chatId`, chatId);
+  
 
 
 
@@ -44,14 +42,20 @@ function Chat() {
     // newMessage('');
   };
 
-const isAnswered = (id) => {
+const isAnswered = (id, conversation_id) => {
 // works to change the respond to answered
-    dispatch({ type: "CHANGE_ANSWER", payload:id})
+    dispatch({ type: "CHANGE_ANSWER", payload:{
+      id:id,
+      conversation_id:conversation_id
+    }})
 }
 
-const deleteMessage = (id) => {
+const deleteMessage = (id, conversation_id) => {
 // deletes each indivudual messages 
-    dispatch({ type: "DELETE_MESSAGE", payload:id })
+    dispatch({ type: "DELETE_MESSAGE", payload:{
+      id:id,
+      conversation_id:conversation_id
+    }})
 }
 
 
@@ -67,8 +71,8 @@ if (allMessages.length < 1){
       <div>
           { allMessages.map((message, i) => <div key={i}>
               {message.message} 
-              <button onClick={() =>isAnswered(message.id)}>Answered</button>
-              <button onClick={() =>deleteMessage(message.id, conversation_id)}>delete</button>
+              <button onClick={() =>isAnswered(message.id, message.conversation_id)}>Answered</button>
+              <button onClick={() =>deleteMessage(message.id, message.conversation_id)}>delete</button>
               </div>) }</div>
       <div>
 

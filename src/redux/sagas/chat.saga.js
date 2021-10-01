@@ -27,9 +27,9 @@ function* fetchMessages (action){
 function* deleteMessage (action){
     console.log('the deleted message from the chat is: ', action)
     try {
-        const deleteMessage = yield axios.delete(`/api/chat/${action.payload}`);
+        const deleteMessage = yield axios.delete(`/api/chat/${action.payload.id}`);
         console.log('deleting the message:', deleteMessage.data);
-        yield put({ type: 'FETCH_MESSAGES' });
+        yield put({ type: 'FETCH_MESSAGES', payload:action.payload.conversation_id });
 
     } catch {
         console.log('ERROR DELETING A MESSAGE ', err);
@@ -57,7 +57,7 @@ function* deleteChat (action){
 
 // This saga does the update of answer and unanswer
 function* answerMessage (action){
-    console.log('the changed message is ', action)
+    console.log('the changed message is PUT', action)
 
     try {
         const changeAnswere = yield axios.put(`/api/chat/${action.payload}`);
