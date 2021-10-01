@@ -5,7 +5,7 @@ function* postMessages (action){
     // posting the created link from generator into the converstaion table
     try {
         yield axios.post('/api/chat', action.payload);
-        yield put({ type: 'FETCH_MESSAGES' });
+        yield put({ type: 'FETCH_MESSAGES', payload: action.payload.conversation_id});
     } catch (err) {
         console.log("Error posting a message in postMessages", err);
     }
@@ -62,7 +62,7 @@ function* answerMessage (action){
     try {
         const changeAnswere = yield axios.put(`/api/chat/${action.payload}`);
         console.log('change done:', changeAnswere.data);
-        yield put({ type: 'FETCH_MESSAGES'});
+        yield put({ type: 'FETCH_MESSAGES', payload:action.payload.conversation_id});
 
     } catch {
         console.log('ERROR changing Answer ', err);

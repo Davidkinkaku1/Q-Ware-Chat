@@ -10,16 +10,17 @@ function Chat() {
   const dispatch = useDispatch();
   let params = useParams();
   let { chatId } = params;
-  let chat = allMessages.find(chat => chat.id === Number(chatId));
-  console.log(`this is the chat`, chat);
+  // let currentChat = allMessages.find(chat => chat.id === Number(chatId));
+  // console.log(`this is the chat`,currentChat);
   // console.log(`this is the chatId`, chatId);
 
 
 
   // setting a state for my messages.
   let [newMessage, setNewMessage] = useState('');
-
+  
   useEffect(() => {
+    console.log('this is the chatId, that worries me', chatId)
     dispatch({ type: "FETCH_MESSAGES", payload:chatId});
   }, []);
 
@@ -38,7 +39,6 @@ function Chat() {
         is_answered: false,
         conversation_id:chatId
     }});
-    
     setNewMessage('');
     //updates the next MESSAGE to have a new id
     // newMessage('');
@@ -51,11 +51,11 @@ const isAnswered = (id) => {
 
 const deleteMessage = (id) => {
 // deletes each indivudual messages 
-    dispatch({ type: "DELETE_MESSAGE", payload:id})
+    dispatch({ type: "DELETE_MESSAGE", payload:id })
 }
 
 
-if (!chat){
+if (allMessages.length < 1){
   return <h2>You have an invalid link or Qr- Code</h2>
 } else {
 
@@ -68,7 +68,7 @@ if (!chat){
           { allMessages.map((message, i) => <div key={i}>
               {message.message} 
               <button onClick={() =>isAnswered(message.id)}>Answered</button>
-              <button onClick={() =>deleteMessage(message.id)}>delete</button>
+              <button onClick={() =>deleteMessage(message.id, conversation_id)}>delete</button>
               </div>) }</div>
       <div>
 

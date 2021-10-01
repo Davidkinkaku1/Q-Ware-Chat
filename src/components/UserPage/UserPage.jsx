@@ -24,7 +24,7 @@ function UserPage() {
     
     // doing the delete axios to delete the url
     dispatch({ type: "DELETE_URL", payload: id })
-    dispatch({ type: "FETCH_LINKS" });
+    // dispatch({ type: "FETCH_LINKS" });
     
 
   };

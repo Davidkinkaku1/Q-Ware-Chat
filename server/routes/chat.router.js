@@ -17,6 +17,7 @@ console.log('this is in line12 my chat id', req.params.id)
     .then((result) => {
         res.send(result.rows);
     }).catch((err) => {
+        console.log('thisis ',err)
         res.sendStatus(500);
     })
 
