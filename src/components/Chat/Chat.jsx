@@ -59,7 +59,7 @@ const deleteMessage = (id, conversation_id) => {
 }
 
 
-if (allMessages.length < 1){
+if (!chatId){
   return <h2>You have an invalid link or Qr- Code</h2>
 } else {
 
