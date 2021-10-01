@@ -11,7 +11,7 @@ function UserPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: "FETCH_LINKS" });
+    dispatch({ type: "FETCH_LINKS"});
   }, []);
 
   const removeUrl = (id) => {
@@ -32,22 +32,16 @@ function UserPage() {
 
 
 // **************RANDOMIZING LINKS AND SENDING IT TO POST FUNCTION**************** //
-let [newUrl, setNewUrl] = useState('Your new would appear link here')
 
 const randomizeLink = (event,id) => {
 event.preventDefault();
   // setting a random variable that generates random numbers between 0-1500 
-  const randomLink = "http://localhost:3000/#/chat/" + Math.floor(Math.random() * 1000);
-  console.log(randomLink);
-  setNewUrl(randomLink);
-
+  
   dispatch({ type: "ADD_LINK", payload:{
-    url: newUrl, 
+    url: "http://localhost:3000/#/chat/" ,  //won't be local host in the long
     user_id: id
   }})
  }
-
-
 
 
 
@@ -61,7 +55,7 @@ event.preventDefault();
       <br />
       <div className="linker">
         <button onClick={randomizeLink}>Start a Q-Ware Rom</button>
-        <h5>{newUrl}</h5><button onClick={() => navigator.clipboard.writeText(newUrl)}>copy link</button>
+
       </div>
       <div>
         

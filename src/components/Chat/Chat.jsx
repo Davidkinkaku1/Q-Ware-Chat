@@ -1,18 +1,26 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 function Chat() {
   // calling in the store where messages are being store
   const allMessages = useSelector((store) => store.getMessageReducer);
 
   const dispatch = useDispatch();
+  let params = useParams();
+  let { chatId } = params;
+  let chat = allMessages.find(chat => chat.id === Number(chatId));
+  console.log(`this is the chat`, chat);
+  // console.log(`this is the chatId`, chatId);
+
+
 
   // setting a state for my messages.
   let [newMessage, setNewMessage] = useState('');
-  let [isAnswer, setIsAnswer] = useState(false);
+
   useEffect(() => {
-    dispatch({ type: "FETCH_MESSAGES" });
+    dispatch({ type: "FETCH_MESSAGES", payload:chatId});
   }, []);
 
   const handleNewMessage = (event) => {
@@ -28,7 +36,7 @@ function Chat() {
     dispatch({ type: "ADD_MESSAGE", payload: {
         message: newMessage,
         is_answered: false,
-        conversation_id:20
+        conversation_id:chatId
     }});
     
     setNewMessage('');
@@ -37,15 +45,19 @@ function Chat() {
   };
 
 const isAnswered = (id) => {
-    // event.preventDefault();
+// works to change the respond to answered
     dispatch({ type: "CHANGE_ANSWER", payload:id})
-    
 }
 
 const deleteMessage = (id) => {
-    // event.preventDefault();
+// deletes each indivudual messages 
     dispatch({ type: "DELETE_MESSAGE", payload:id})
 }
+
+
+if (!chat){
+  return <h2>You have an invalid link or Qr- Code</h2>
+} else {
 
   return (
     <>
@@ -53,11 +65,11 @@ const deleteMessage = (id) => {
         <h2>Q-ware</h2>
       </center>
       <div>
-          { allMessages.map((message, i) => <li key={i}>
+          { allMessages.map((message, i) => <div key={i}>
               {message.message} 
               <button onClick={() =>isAnswered(message.id)}>Answered</button>
               <button onClick={() =>deleteMessage(message.id)}>delete</button>
-              </li>) }</div>
+              </div>) }</div>
       <div>
 
         <form onSubmit={addNewMessage}>
@@ -68,5 +80,5 @@ const deleteMessage = (id) => {
     </>
   );
 }
-
+}
 export default Chat;

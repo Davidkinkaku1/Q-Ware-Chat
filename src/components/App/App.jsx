@@ -32,6 +32,8 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
+    dispatch({ type: "FETCH_MESSAGES",});
+
   }, [dispatch]);
 
   return (
@@ -77,13 +79,10 @@ function App() {
           >
             <AdminPage />
           </ProtectedRoute>
-          <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
-            exact
-            path="/chat"
-          >
-            <Chat />
-          </ProtectedRoute>
+         
+          
+        
+          
 
           <Route
             exact
@@ -143,16 +142,8 @@ function App() {
 
           <Route
             exact
-            path="/chat"
-          >
-            {user.id ?
-              // If the user is already logged in, 
-              // redirect them to the /user page
-              <Redirect to="/chat" />
-              :
-              // Otherwise, show the Landing page
-              <LandingPage />
-            }
+            path="/chat/:chatId">
+            <Chat />
           </Route>
         
 
