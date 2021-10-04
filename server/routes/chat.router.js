@@ -5,15 +5,15 @@ const router = express.Router();
 /**
  * GET route template MESSAGES
  */
-router.get('/:id', (req, res) => {
+router.get('/:urlid', (req, res) => {
   // GET route code here
   // this gets all my links from the 
   // SELECT * FROM "conversation" where "user_id" ="req.user.id" order by "id";
-console.log('this is in line12 my chat id', req.params.id)
+console.log('this is in line12 my chat id', req.params.urlid)
   let queryText = `SELECT * FROM "message"
-  WHERE "conversation_id" =$1
+  WHERE "conversation_id" = (SELECT "id" from "conversation" where "url" =$1)
   ORDER BY "id";`; 
-    pool.query(queryText,[req.params.id])
+    pool.query(queryText,[req.params.urlid])
     .then((result) => {
         res.send(result.rows);
     }).catch((err) => {
@@ -36,7 +36,7 @@ router.post('/', (req, res) => {
 console.log('this is the message added', message, conversationId);
 
   const queryText = `INSERT INTO "message" ( "message", "conversation_id")
-  VALUES($1, $2);`;
+  VALUES($1, (SELECT "id" FROM conversation Where "url"=$2));`;
 
   pool.query(queryText, [message, conversationId])
   .then((result) => {
