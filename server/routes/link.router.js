@@ -29,10 +29,11 @@ router.post('/', (req, res) => {
   const newLink = req.body;
   console.log('this is the body' ,newLink);
 
-
-  const url ="blah";
+  // declairing a variable to store the links
+  
+ let url =  Math.random().toString(36).substring(2, 5) + Math.random().toString(36).substring(2, 5);;
   const userId = req.user.id;
-console.log('this is the url', url);
+  console.log('this is the url', url);
 
   const queryText = `INSERT INTO "conversation" ("url", "user_id")
   VALUES($1, $2) RETURNING "id","url";`;
