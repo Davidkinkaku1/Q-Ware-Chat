@@ -9,7 +9,7 @@ const passport = require('./strategies/user.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
-const linkRouter = require('./routes/template.router');
+const linkRouter = require('./routes/link.router');
 const adminRouter = require('./routes/admin.router');
 const chatPageRouter = require('./routes/chat.router')
 

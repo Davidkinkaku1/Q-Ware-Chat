@@ -1,7 +1,9 @@
 import React from "react";
 import LogOutButton from "../LogOutButton/LogOutButton";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import Qrcode from "../Qrcode/Qrcode";
+// import Qrcode from "../Qrcode/Qrcode";
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -38,12 +40,12 @@ event.preventDefault();
   // setting a random variable that generates random numbers between 0-1500 
   
   dispatch({ type: "ADD_LINK", payload:{
-    url: "http://localhost:3000/#/chat/" ,  //won't be local host in the long
-    user_id: id
+    // url: "http://localhost:3000/#/chat/" ,  //won't be local host in the long
+    // user_id: id
   }})
  }
 
-
+let serverName = window.location.origin
 
   return (
     <>
@@ -57,16 +59,20 @@ event.preventDefault();
         <button onClick={randomizeLink}>Start a Q-Ware Rom</button>
 
       </div>
-      <div>
+      <div className="linker-container">
         
         <br />
         <p>These are all your Q-Ware Chats!</p>
         {userLinks.map((link, i) => (
-          <li key={i}> {link.url} 
+          <li key={i}> <a href= {`${serverName}/#/chat/${link.url}`}>{`${serverName}/#/chat/${link.url}`}</a>
            {<button onClick={() =>removeUrl(link.id)}>delete</button>}
           </li>
         ))}
+        <br/>
       </div>
+          <div className="linker-container-qr-code"> 
+            <Qrcode />
+          </div>
     </>
   );
 }
