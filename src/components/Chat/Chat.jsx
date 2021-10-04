@@ -15,16 +15,13 @@ function Chat() {
   let params = useParams();
   let { chatId } = params;
   const currentConversation = allConversations.find((conversation) => conversation.url === chatId);
-debugger; 
-
   // setting a state for my messages.
-  let [newMessage, setNewMessage] = useState("");
+  let [newMessage, setNewMessage] = useState('');
 
   useEffect(() => {
     console.log("this is the chatId, that worries me", chatId);
     dispatch({ type: "FETCH_MESSAGES", payload: chatId });
     // dispatch({ type: "FETCH_LINKS", payload: chatId });
-
   }, []);
 
   const handleNewMessage = (event) => {
@@ -45,7 +42,7 @@ debugger;
         conversation_id: chatId
       },
     });
-    setNewMessage("");
+    // setNewMessage('');
     //updates the next MESSAGE to have a new id
     // newMessage('');
   };
@@ -61,16 +58,18 @@ debugger;
     });
   };
 
-  const deleteMessage = (id, conversation_id) => {
+  const deleteMessage = (id) => {
     // deletes each indivudual messages
     dispatch({
       type: "DELETE_MESSAGE",
       payload: {
         id: id,
-        conversation_id: conversation_id,
+        conversation_id: chatId,
       },
+      
     });
   };
+
 
   if (!chatId) {
     return <h2>You have an invalid link or Qr- Code</h2>;
@@ -84,6 +83,7 @@ debugger;
           {allMessages.map((message, i) => (
             <div key={i}>
               {message.message}
+              <div className="timestamp">{message.sent_at}</div> 
               <button
                 onClick={() => isAnswered(message.id, message.conversation_id)}
               >
@@ -91,7 +91,7 @@ debugger;
               </button>
               <button
                 onClick={() =>
-                  deleteMessage(message.id, message.conversation_id)
+                  deleteMessage(message.id)
                 }
               >
                 delete
@@ -109,6 +109,7 @@ debugger;
             <input type="submit" value="send message" />
           </form>
         </div>
+
       </>
     );
   }
