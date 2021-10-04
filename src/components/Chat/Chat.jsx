@@ -11,9 +11,6 @@ function Chat() {
   let params = useParams();
   let { chatId } = params;
   
-
-
-
   // setting a state for my messages.
   let [newMessage, setNewMessage] = useState('');
   
@@ -58,7 +55,6 @@ const deleteMessage = (id, conversation_id) => {
     }})
 }
 
-
 if (!chatId){
   return <h2>You have an invalid link or Qr- Code</h2>
 } else {
@@ -74,8 +70,7 @@ if (!chatId){
               <button onClick={() =>isAnswered(message.id, message.conversation_id)}>Answered</button>
               <button onClick={() =>deleteMessage(message.id, message.conversation_id)}>delete</button>
               </div>) }</div>
-      <div>
-
+      <div className="chat-route">
         <form onSubmit={addNewMessage}>
           <input type="text" value={newMessage.message} onChange={handleNewMessage} />
           <input type="submit" value="send message" />

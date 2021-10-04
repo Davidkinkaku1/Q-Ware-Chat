@@ -79,10 +79,6 @@ function App() {
           >
             <AdminPage />
           </ProtectedRoute>
-         
-          
-        
-          
 
           <Route
             exact
@@ -157,5 +153,6 @@ function App() {
     </Router>
   );
 }
+
 
 export default App;
