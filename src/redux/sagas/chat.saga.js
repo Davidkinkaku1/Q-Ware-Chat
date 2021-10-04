@@ -3,6 +3,7 @@ import axios from 'axios';
 
 function* postMessages (action){
     // posting the created link from generator into the converstaion table
+    console.log('probably say it in postmessage saga ', action.payload)
     try {
         yield axios.post('/api/chat', action.payload);
         yield put({ type: 'FETCH_MESSAGES', payload: action.payload.conversation_id});
@@ -60,7 +61,7 @@ function* answerMessage (action){
     console.log('the changed message is PUT', action)
 
     try {
-        const changeAnswere = yield axios.put(`/api/chat/${action.payload}`);
+        const changeAnswere = yield axios.put(`/api/chat/${action.payload.id}`);
         console.log('change done:', changeAnswere.data);
         yield put({ type: 'FETCH_MESSAGES', payload:action.payload.conversation_id});
 

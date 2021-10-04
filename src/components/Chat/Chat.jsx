@@ -21,13 +21,14 @@ function Chat() {
   useEffect(() => {
     console.log("this is the chatId, that worries me", chatId);
     dispatch({ type: "FETCH_MESSAGES", payload: chatId });
-    // dispatch({ type: "FETCH_LINKS", payload: chatId });
+
   }, []);
 
   const handleNewMessage = (event) => {
     console.log("event happened");
     //Similar to in redux -- we dont want to get rid of the id field when we update name
     setNewMessage(event.target.value);
+   
   };
 
   const addNewMessage = (event) => {
@@ -42,18 +43,15 @@ function Chat() {
         conversation_id: chatId
       },
     });
-    // setNewMessage('');
-    //updates the next MESSAGE to have a new id
-    // newMessage('');
   };
 
-  const isAnswered = (id, conversation_id) => {
+  const isAnswered = (id) => {
     // works to change the respond to answered
     dispatch({
       type: "CHANGE_ANSWER",
       payload: {
         id: id,
-        conversation_id: conversation_id,
+        conversation_id: chatId
       },
     });
   };
@@ -85,7 +83,7 @@ function Chat() {
               {message.message}
               <div className="timestamp">{message.sent_at}</div> 
               <button
-                onClick={() => isAnswered(message.id, message.conversation_id)}
+                onClick={() => isAnswered(message.id)}
               >
                 Answered
               </button>
@@ -110,6 +108,7 @@ function Chat() {
           </form>
         </div>
 
+                
       </>
     );
   }

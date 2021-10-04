@@ -81,7 +81,7 @@ router.delete('/chat/:id',  (req, res) => { //calling the database
 
 router.put('/:id', (req, res) => {
     let messageId = req.params.id;
-    console.log('This inside the put: ', messageId);
+    console.log('This inside the put: ', req.params.id);
 
     let queryText = `UPDATE "message" SET "is_answered" = NOT is_answered  
     WHERE "id" = $1;`
