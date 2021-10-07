@@ -1,33 +1,33 @@
 .nav {
   /* flex box layout */
-  display: flex;
+  display: block;
   justify-content: space-between;
   align-items: center;
 
-  margin: 0 0 30px;
+  margin: 0 0 10px;
   background-color: transparent;
   overflow: hidden;
 
-}
+} 
 
-.nav a {
-  text-decoration: none;
-}
+
 
 .nav-title {
   font-size: 30px;
   font-weight: 700;
-  color: #b6a2a2;
-  padding-left: 10px;
-  margin: 0;
+  color: #644242;
+  padding-left: 1px;
+  margin: 12;
+  background-color:transparent;
+
 }
 
 .navLink {
-  display: inline-block;
-  color: #c8bcbc;
+  display: block;
+  color: #644242;
   background-color:transparent;
   text-align: center;
-  padding: 24px 10px;
+  padding: auto auto;
   text-decoration: none;
   font-size: 15px;
 
@@ -35,9 +35,10 @@
   the nav bar look like another link */
   border: none;
   cursor: pointer;
-  outline: 0;
-}
+  outline: 5;
+} 
 
-.navLink:hover {
-  background-color: #346364;
+.navLink :hover {
+  background-color: transparent;
+  border-radius: 80%;
 }
