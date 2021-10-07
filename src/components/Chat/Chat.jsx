@@ -2,9 +2,24 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Button, Typography, SendIcon, Container, FormControl,TextField } from "@material-ui/core";
+import {
+  Button,
+  Typography,
+  Container,
+  TextField,
+  Grid,
+  Paper
+} from "@material-ui/core";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DoneIcon from "@mui/icons-material/Done";
+import SendIcon from "@mui/icons-material/Send";
+import InputAdornment from '@mui/material/InputAdornment';
+// import { withStyles } from "@material-ui/core/styles";
+// import {makeStyles} from '@material-ui/core/styles'
+// import { Box } from "@mui/system";
+
+import './Chat.css'
+
 
 
 function Chat() {
@@ -60,6 +75,7 @@ function Chat() {
         conversation_id: chatId,
       },
     });
+
   };
 
   const deleteMessage = (id) => {
@@ -73,64 +89,87 @@ function Chat() {
     });
   };
 
+
   if (!chatId) {
     return (
-      <Typography variant="h2" color="primary" align="center">
+      <Typography variant="h2" color="primary" align="center" >
         You have an invalid link or Qr- Code
       </Typography>
     );
   } else {
     return (
-      <Container  align="center">
-        <Typography variant="h4" color="primary" align="center">
+      <Container align="center" className="page-conta">
+        <Typography variant="h4"  align="center" className="Chat-title">
           Q-ware chat
         </Typography>
-
+          <br/>
         <Container className="chat-container">
           {allMessages.map((message, i) => (
-            <Container key={i}>
-              {message.message} sent {moment(`${message.sent_at}`).fromNow()}
+            <div  key={i} 
+            className="chat-content-container"
+            id="chat-s" >
+              <div
+              className="message-container-paper">
+               {" "}{message.message}{" "}
+              </div>
+                <div className="time-container">sent {moment(`${message.sent_at}`).fromNow()}</div>
               <Container className="chat-container-answer-delete">
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={() => isAnswered(message.id)}
-                >
-                  <DoneIcon fontSize="small" variant="Outlined"
-                  color="success"/>
-                </Button>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  onClick={() => deleteMessage(message.id)}
-                >
-                  <DeleteIcon fontSize="small" variant="contained"/>
-                </Button>
+                <div 
+                className="chat-container-done"
+                onClick={() => isAnswered(message.id)}>
+                  <DoneIcon
+                    fontSize="small"
+                    variant="Outlined"
+                    color="success"
+                    size="small"/>
+                </div>
+                <div className="chat-container-delete"  >
+                  <DeleteIcon fontSize="small" variant="contained" size="small" onClick={() => deleteMessage(message.id) }/>
+                </div>
               </Container>
-            </Container>
+            </div>
           ))}
         </Container>
-        <Container className="chat-route">
-          <FormControl onSubmit={addNewMessage} >
+
+        <form onSubmit={addNewMessage}>
+          <Container className="chat-route">
             {/* <Input
               type="text"
               value={newMessage.message}
               onChange={handleNewMessage}
-
             /> */}
-            <TextField 
-            fullWidth label="send a message" 
-            id="input-fullWidth" 
-            value={newMessage.message}
-            type="text"
-            onChange={handleNewMessage}
-            align="center"
-            />
-            <Button color="primary" type="submit">
+
+            <TextField
+              fullWidth={true}
+              required
+              label="send a message"
+              id="input-fullWidth"
+              value={newMessage.message}
+              type="text"
+              onChange={handleNewMessage}
+              align="middle"
+              autoFocus={true}
+              variant="outlined"
+              autoCorrect="string"
+              InputProps={{
+          startAdornment: (
+            <InputAdornment position="end">
+            <Button
+              color="primary"
+              type="submit"
+              onClick={addNewMessage}
+              className="btn-send"
+            >
               <SendIcon />
             </Button>
-          </FormControl>
-        </Container>
+            </InputAdornment>
+          ),
+        }}
+            
+            />
+           
+          </Container>
+        </form>
       </Container>
     );
   }

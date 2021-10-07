@@ -24,8 +24,8 @@ export default function Qrcode (){
         id="qrCodeId"
         size={180}
         value={url}
-        bgColor="white"
-        fqColor="black"
+        bgColor="grey"
+        fqcolor="black"
         />
     );
     return (
