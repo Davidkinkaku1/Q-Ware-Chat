@@ -2,15 +2,23 @@
 
 
 .Chat-title{
-    background-color:hsl(215, 24%, 47%);
-    border-radius: auto 20px;
+    background-color:hsl(0, 3%, 86%);
+    border-radius:  90px 90px;
+    margin-top: 30px 30px;
 }
 
 
 
 .page-container{
-background-color:rgb(145, 158, 173)
+background-color:rgb(174, 185, 197)
 }
 body{
-    background-color:rgb(149, 161, 175)
+    background-color:rgb(244, 244, 246)
+}
+
+form{
+    margin:auto;
+}
+.chat-content-container{
+    background-color:rgb(241, 241, 241)
 }

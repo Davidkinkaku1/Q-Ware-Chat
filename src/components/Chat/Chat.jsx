@@ -7,30 +7,31 @@ import {
   Typography,
   Container,
   TextField,
-  Grid,
-  Paper
+
 } from "@material-ui/core";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DoneIcon from "@mui/icons-material/Done";
 import SendIcon from "@mui/icons-material/Send";
-import InputAdornment from '@mui/material/InputAdornment';
+import InputAdornment from "@mui/material/InputAdornment";
 // import { withStyles } from "@material-ui/core/styles";
 // import {makeStyles} from '@material-ui/core/styles'
 // import { Box } from "@mui/system";
-
-import './Chat.css'
-
-
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+// import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { useHistory } from "react-router";
+import "./Chat.css";
 
 function Chat() {
   // requiring moment
   const moment = require("moment");
   // calling in the user to show their name in the chat owner.
-  const user = useSelector((store) => store.users);
+  const user = useSelector((store) => store.user);
   // calling in the store where messages are being store
   const allMessages = useSelector((store) => store.getMessageReducer);
   // grab all the conversation that matches the url, will give the id
   const allConversations = useSelector((store) => store.linkListReducer);
+
+  const history = useHistory();
 
   const dispatch = useDispatch();
   let params = useParams();
@@ -39,18 +40,13 @@ function Chat() {
     (conversation) => conversation.url === chatId
   );
   // setting a state for my messages.
-  let [newMessage, setNewMessage] = useState("");
+  let [newMessage, setNewMessage] = useState('');
 
   useEffect(() => {
     console.log("this is the chatId, that worries me", chatId);
     dispatch({ type: "FETCH_MESSAGES", payload: chatId });
   }, []);
 
-  const handleNewMessage = (event) => {
-    console.log("event happened");
-    //Similar to in redux -- we dont want to get rid of the id field when we update name
-    setNewMessage(event.target.value);
-  };
 
   const addNewMessage = (event) => {
     event.preventDefault();
@@ -64,10 +60,12 @@ function Chat() {
         conversation_id: chatId,
       },
     });
+    setNewMessage('');
   };
 
   const isAnswered = (id) => {
     // works to change the respond to answered
+    console.log("this is my user", user);
     dispatch({
       type: "CHANGE_ANSWER",
       payload: {
@@ -76,6 +74,18 @@ function Chat() {
       },
     });
 
+  };
+  const votes = (id, direction) => {
+    // works to change the respond to answered
+    dispatch({
+      type: "VOTE_MESSAGE",
+      payload: {
+        id: id,
+        direction: direction,
+        conversation_id: chatId,
+      },
+    });
+    console.log("this is the id in direction", id, direction);
   };
 
   const deleteMessage = (id) => {
@@ -89,85 +99,89 @@ function Chat() {
     });
   };
 
-
   if (!chatId) {
     return (
-      <Typography variant="h2" color="primary" align="center" >
+      <Typography variant="h2" color="primary" align="center">
         You have an invalid link or Qr- Code
       </Typography>
     );
   } else {
     return (
       <Container align="center" className="page-conta">
-        <Typography variant="h4"  align="center" className="Chat-title">
+        <Typography variant="h4" align="center" className="Chat-title">
           Q-ware chat
         </Typography>
-          <br/>
+        <br />
         <Container className="chat-container">
           {allMessages.map((message, i) => (
-            <div  key={i} 
-            className="chat-content-container"
-            id="chat-s" >
-              <div
-              className="message-container-paper">
-               {" "}{message.message}{" "}
+            <div key={i} className="chat-content-container" id="chat-s">
+              <div className="message-container-paper"> {message.message} </div>
+              <div className="time-container">
+                sent {moment(`${message.sent_at}`).fromNow()}
               </div>
-                <div className="time-container">sent {moment(`${message.sent_at}`).fromNow()}</div>
-              <Container className="chat-container-answer-delete">
-                <div 
-                className="chat-container-done"
-                onClick={() => isAnswered(message.id)}>
-                  <DoneIcon
-                    fontSize="small"
-                    variant="Outlined"
-                    color="success"
-                    size="small"/>
-                </div>
-                <div className="chat-container-delete"  >
-                  <DeleteIcon fontSize="small" variant="contained" size="small" onClick={() => deleteMessage(message.id) }/>
-                </div>
-              </Container>
+              <ArrowDropUpIcon onClick={() => votes(message.id, "up")} />
+              {message.votes}
+
+              {user?.id && (
+                <>
+                  <div
+                    className="chat-container-done"
+                    onClick={() => isAnswered(message.id)}
+                  >
+                    <DoneIcon
+                      fontSize="small"
+                      variant="Outlined"
+                      color="success"
+                      size="small"
+                    />
+                  </div>
+
+                  <div className="chat-container-delete">
+                    <DeleteIcon
+                      fontSize="small"
+                      variant="contained"
+                      size="small"
+                      onClick={() => deleteMessage(message.id)}
+                    />
+                  </div>
+                </>
+              )}
             </div>
           ))}
         </Container>
 
+                    {/* {TextField} */}
         <form onSubmit={addNewMessage}>
           <Container className="chat-route">
-            {/* <Input
-              type="text"
-              value={newMessage.message}
-              onChange={handleNewMessage}
-            /> */}
-
             <TextField
               fullWidth={true}
               required
               label="send a message"
               id="input-fullWidth"
-              value={newMessage.message}
+              value={newMessage}
               type="text"
-              onChange={handleNewMessage}
+              onChange={(event)=> setNewMessage(event.target.value)}
               align="middle"
               autoFocus={true}
               variant="outlined"
               autoCorrect="string"
               InputProps={{
-          startAdornment: (
-            <InputAdornment position="end">
-            <Button
-              color="primary"
-              type="submit"
-              onClick={addNewMessage}
-              className="btn-send"
-            >
-              <SendIcon />
-            </Button>
-            </InputAdornment>
-          ),
-        }}
-            
+                endAdornment: (
+                  <InputAdornment position="end" component="div">
+                    {newMessage.length > 0 && (
+                      <Button
+                        color="primary"
+                        type="submit"
+                        onClick={addNewMessage}
+                        className="btn-send"
+                      >
+                        <SendIcon />
+                      </Button>
+                    )}
+                  </InputAdornment>
+                ),
+              }}
             />
-           
           </Container>
         </form>
       </Container>

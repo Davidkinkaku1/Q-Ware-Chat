@@ -79,7 +79,7 @@ router.delete('/chat/:id',  (req, res) => { //calling the database
 
 // update messages to answer of a song
 
-router.put('/:id', (req, res) => {
+router.put('/answer/:id', (req, res) => {
     let messageId = req.params.id;
     console.log('This inside the put: ', req.params.id);
 
@@ -94,7 +94,30 @@ router.put('/:id', (req, res) => {
     })
 })
 
+router.put('/vote/:id', (req, res) => {
+    let messageId = req.params.id;
+    console.log('This inside the vote: ', req.params.id);
+    // the direction can either be +1 or -1
+    let direction = req.body.direction
+    let queryText ='';
 
+    if (direction === 'up'){
+            // up voting 
+        queryText = `UPDATE "message" SET "votes" = (SELECT "votes" FROM "message" WHERE "id"=$1 ) +1
+        WHERE "id" = $1;`
+    } else if (direction==='down'){
+        queryText = `UPDATE "message" SET "votes" = (SELECT "votes" FROM "message" WHERE "id"=$1 ) -1
+        WHERE "id" = $1;` 
+    }
+    console.log('this is my direction', direction, req.body)
+    pool.query(queryText, [ messageId])
+    .then((result) => {
+        console.log('this is my querytext' , queryText)
+        res.sendStatus(200)
+    }).catch((err) => {
+        console.log('server error', err)
+    })
+})
 
 
 module.exports = router;

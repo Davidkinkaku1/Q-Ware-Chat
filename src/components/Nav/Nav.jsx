@@ -99,7 +99,7 @@ export default function Nav() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" style={{ background: (144, 54, 37 ) }} >
         <Toolbar>
           <Link to="/home">
             <Typography

@@ -61,7 +61,7 @@ function* answerMessage (action){
     console.log('the changed message is PUT', action)
 
     try {
-        const changeAnswere = yield axios.put(`/api/chat/${action.payload.id}`);
+        const changeAnswere = yield axios.put(`/api/chat/answer/${action.payload.id}`);
         console.log('change done:', changeAnswere.data);
         yield put({ type: 'FETCH_MESSAGES', payload:action.payload.conversation_id});
 
@@ -71,6 +71,21 @@ function* answerMessage (action){
 
 } // end of answerMessage
 
+// This saga does the update of answer and unanswer
+function* voteMessage (action){
+    console.log('the changed message is PUT', action)
+
+    try {
+        yield axios.put(`/api/chat/vote/${action.payload.id}`, {direction:action.payload.direction});
+        console.log('the action.paylod.direction', action.payload);
+        yield put({ type: 'FETCH_MESSAGES', payload:action.payload.conversation_id});
+
+    } catch {
+        console.log('ERROR changing Answer ', err);
+    }
+
+} // end of voteMessage
+
 
 
 function* chatSaga (){
@@ -79,7 +94,7 @@ function* chatSaga (){
     yield takeLatest('DELETE_MESSAGE', deleteMessage)
     yield takeLatest('DELETE_CHAT', deleteChat)
     yield takeLatest('CHANGE_ANSWER', answerMessage)
-    
+    yield takeLatest('VOTE_MESSAGE', voteMessage)
     }
     
     export default chatSaga;

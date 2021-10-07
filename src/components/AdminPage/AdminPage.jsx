@@ -3,6 +3,12 @@ import LogOutButton from "../LogOutButton/LogOutButton";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 // import axios from "axios";
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 function AdminPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -27,6 +33,15 @@ function AdminPage() {
   };
 
 
+  const bull = (
+    <Box
+      component="span"
+      sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
+    >
+      •
+    </Box>
+  );
+
   return (
     <>
       <div className="admin-container">
@@ -34,8 +49,10 @@ function AdminPage() {
         <p>Your ID is: {user.id}</p>
         <LogOutButton className="btn" />
       </div>
+
+  
       <br />
-      <div className="admin-page">
+      <div className="admin-page" >
         <br />
         <p>These are all your Q-Ware Users and Their Chats!</p>
 

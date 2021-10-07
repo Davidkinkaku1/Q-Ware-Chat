@@ -35,11 +35,14 @@ function App() {
 
 
   }, [dispatch]);
+  
 
   return (
     <Router>
       <div>
+      {user?.id && (
         <Nav />
+      )}
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
@@ -135,6 +138,7 @@ function App() {
               <LandingPage />
             }
           </Route>
+
 
           <Route
             exact
