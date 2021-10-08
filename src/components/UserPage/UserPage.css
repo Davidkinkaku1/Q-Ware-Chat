@@ -1,0 +1,23 @@
+.linker-container{
+    padding:5px;
+    margin-left: auto;
+    font-size:large;
+    font-family: Garamond, serif;
+}
+.container{
+    padding:5px;
+    margin-left: auto; 
+    font-size:large;
+    font-family: Garamond, serif;
+}
+.linker {
+    padding:5%;
+    margin-left: auto; 
+    font-size:large;
+    font-family: Garamond, serif;
+    background-color: rgb(235, 235, 235)
+}
+h2{
+    font-size:large;
+    font-family: Garamond, serif;
+}

@@ -130,8 +130,10 @@ function Chat() {
         <br />
         <Container className="chat-container" id="chat-container">
           {allMessages.map((message, i) => (
+
             <table key={i} className="chat-content-container" id="chat-s">
-              <tr>
+              
+              <tr className={message.is_answered=== true ? "answer-true": ""}>
                 <td >
                   <ArrowDropUpIcon onClick={() => votes(message.id, "up")} />
                 <td className="chat-item-vote"> {message.votes}</td> 

@@ -38,7 +38,7 @@ export default function Qrcode (){
             onChange={(evt)=> setUrl(evt.target.value)}
             placeholder= "Copy your URL"
             />
-            <button type="submit" className="qr-button">Make a QR code</button>
+            <button type="submit" className="qr-button">Create QR code</button>
             </form>
             <br/>
             <div className="qr-code-container-code">{QRcodes}</div>

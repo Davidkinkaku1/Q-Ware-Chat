@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import Qrcode from "../Qrcode/Qrcode";
 // import Qrcode from "../Qrcode/Qrcode";
+import "./UserPage.css"
+import AddIcon from '@mui/icons-material/Add';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -49,30 +51,36 @@ let serverName = window.location.origin
 
   return (
     <>
-      <div className="container">
-        <h2>Welcome, {user.username}!</h2>
-        <p>Your ID is: {user.id}</p>
-        <LogOutButton className="btn" />
-      </div>
+     
       <br />
       <div className="linker">
-        <button onClick={randomizeLink}>Start a Q-Ware Rom</button>
-
+      <div className="container">
+        <h2>Welcome, {user.username}!</h2>
+      </div>
+        <button onClick={randomizeLink}> Start a Q-Ware Rom</button>
+        <p>These are all your Q-Ware Chats!</p>
+        {userLinks.map((link, i) => (
+          <tr>
+          <td key={i} className="links"> <a href= {`${serverName}/#/chat/${link.url}`}>{`${serverName}/#/chat/${link.url}`}</a></td>
+          <td> {<button onClick={() =>removeUrl(link.id)}>delete</button>}
+          </td>
+          <td>   <Qrcode /></td>
+          </tr>
+        ))}
+        <br/>
+        <div className="linker-container-qr-code"> 
+          </div>
       </div>
       <div className="linker-container">
         
         <br />
-        <p>These are all your Q-Ware Chats!</p>
-        {userLinks.map((link, i) => (
-          <li key={i}> <a href= {`${serverName}/#/chat/${link.url}`}>{`${serverName}/#/chat/${link.url}`}</a>
-           {<button onClick={() =>removeUrl(link.id)}>delete</button>}
-          </li>
-        ))}
-        <br/>
+        
+ 
+          
+        
       </div>
-          <div className="linker-container-qr-code"> 
-            <Qrcode />
-          </div>
+        <LogOutButton className="btn" />
+          
     </>
   );
 }

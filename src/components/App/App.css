@@ -5,8 +5,9 @@ body,
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, serif;
   margin: 0px;
+
 }
 
 img {
@@ -33,7 +34,7 @@ Button
   border-width: 1px 1px 3px;
   border-radius: 4px;
   background-color: #6c7d7e;
-  color: #f8f8f8;
+  color: #e0d1d1;
   font-size: 1.1rem;
   outline: 0;
   cursor: pointer;
@@ -111,3 +112,6 @@ input {
   margin-bottom: 10px;
 }
 
+AppBar {
+background: '##BCB0AE' 
+}
