@@ -15,6 +15,7 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import { useHistory } from "react-router";
 import "./Chat.css";
 
+
 function Chat() {
   // requiring moment
   const moment = require("moment");
@@ -35,6 +36,10 @@ function Chat() {
   );
   // setting a state for my messages.
   let [newMessage, setNewMessage] = useState("");
+  const [clickCount, setClickCount] = useState(0)
+  const [userName, setUserName] = useState('')
+
+
 
   useEffect(() => {
     console.log("this is the chatId, that worries me", chatId);
@@ -46,9 +51,18 @@ function Chat() {
     //     console.log('This will run every second!');
     //   }, 1000);
     //   return () => clearInterval(interval);
-      //  const objDiv = document.getElementById("page-container");
-      // objDiv.scrollTop = objDiv.scrollHeight;
+    
   }, []);
+
+
+  useEffect(() => {
+
+   const objDiv = document.getElementById("chat-container");
+   objDiv.scrollTop = objDiv.scrollHeight;
+  //  debugger;
+  },[allMessages])
+
+
 
   const addNewMessage = (event) => {
     event.preventDefault();
@@ -114,7 +128,7 @@ function Chat() {
           chat
         </Typography>
         <br />
-        <Container className="chat-container">
+        <Container className="chat-container" id="chat-container">
           {allMessages.map((message, i) => (
             <table key={i} className="chat-content-container" id="chat-s">
               <tr>

@@ -76,3 +76,12 @@ form{
     padding: 5px;
     margin:5px;
 }
+.chat-container{
+    overflow:scroll;
+    height:60%;
+
+}
+.page-container, #app-container {
+    height:100%;
+
+}

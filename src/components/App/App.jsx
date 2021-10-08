@@ -39,7 +39,7 @@ function App() {
 
   return (
     <Router>
-      <div>
+      <div id="app-container">
       {user?.id && (
         <Nav />
       )}
