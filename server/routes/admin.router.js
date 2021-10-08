@@ -5,10 +5,11 @@ const router = express.Router();
 /**
  * GET route template
  */
+
 router.get('/', (req, res) => {
   // GET route code here
   // this gets all my links from the db and username for the admin
-
+if (req.user.id === 1){
   const queryText = `SELECT "user"."id", "user"."username", "conversation"."url", "conversation"."id" as "conversation_id" FROM "user"
   JOIN "conversation" ON "conversation"."user_id" = "user"."id";`
   pool.query(queryText)
@@ -17,6 +18,10 @@ router.get('/', (req, res) => {
       console.log('Error getting all users and chats', err);
       res.sendStatus(500);
     });
+  } else {
+   res.sendStatus( 403, 'Is that even legal?' );
+  }
+
 });
 
 /**

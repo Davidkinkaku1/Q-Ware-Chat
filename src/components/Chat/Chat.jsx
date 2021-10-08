@@ -45,8 +45,16 @@ function Chat() {
   useEffect(() => {
     console.log("this is the chatId, that worries me", chatId);
     dispatch({ type: "FETCH_MESSAGES", payload: chatId });
+
+    // const interval = setInterval(() => {
+
+    //   dispatch({ type: "FETCH_MESSAGES", payload: chatId });
+    //     console.log('This will run every second!');
+    //   }, 1000);
+    //   return () => clearInterval(interval);
   }, []);
 
+  
 
   const addNewMessage = (event) => {
     event.preventDefault();
@@ -109,19 +117,22 @@ function Chat() {
     return (
       <Container align="center" className="page-conta">
         <Typography variant="h4" align="center" className="Chat-title">
-          Q-ware chat
+        <img alt="logo" src={"../favicon.ico"} class="image-icon"/> Q-ware chat
         </Typography>
         <br />
         <Container className="chat-container">
           {allMessages.map((message, i) => (
             <div key={i} className="chat-content-container" id="chat-s">
+              <div className="message-container-votes">
+              <ArrowDropUpIcon onClick={() => votes(message.id, "up")} />
+                <div className="message-votes-count">
+              {message.votes}
+              </div>
+              </div >
               <div className="message-container-paper"> {message.message} </div>
-              <div className="time-container">
+              <div className="message-time-container">
                 sent {moment(`${message.sent_at}`).fromNow()}
               </div>
-              <ArrowDropUpIcon onClick={() => votes(message.id, "up")} />
-              {message.votes}
-
               {user?.id && (
                 <>
                   <div
@@ -136,7 +147,7 @@ function Chat() {
                     />
                   </div>
 
-                  <div className="chat-container-delete">
+                  <div className="message-container-delete">
                     <DeleteIcon
                       fontSize="small"
                       variant="contained"
@@ -155,13 +166,14 @@ function Chat() {
           <Container className="chat-route">
             <TextField
               fullWidth={true}
-              required
+                required={true}
               label="send a message"
               id="input-fullWidth"
               value={newMessage}
               type="text"
               onChange={(event)=> setNewMessage(event.target.value)}
-              align="middle"
+              align="bottom"
+              style={{ display:"flex", alignItems:"flex-end", justifyContent:"center"}}
               autoFocus={true}
               variant="outlined"
               autoCorrect="string"

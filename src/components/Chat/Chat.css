@@ -2,23 +2,68 @@
 
 
 .Chat-title{
-    background-color:hsl(0, 3%, 86%);
+    background-color:hsl(0, 43%, 99%);
     border-radius:  90px 90px;
     margin-top: 30px 30px;
-}
+    border-top-left-radius: .375rem;
+    border-bottom-left-radius: .375rem;
+    border-top-right-radius: 0;
 
+    width: 89%;
+    max-width: 100%;
+    height: auto;
+}
+.image-icon{
+   width: 30px
+   
+}
 
 
 .page-container{
-background-color:rgb(174, 185, 197)
+background-color:rgb(255, 255, 255);
+max-width: 100%;
+height: auto;
+
 }
-body{
-    background-color:rgb(244, 244, 246)
+
+body {
+    background-color:rgb(255, 255, 255)
 }
 
 form{
     margin:auto;
 }
 .chat-content-container{
-    background-color:rgb(241, 241, 241)
+    background-color:rgb(241, 241, 241);
+    flex-direction: row-reverse;
+    font-weight: small;
+    margin: 5px auto;
+    padding: 5px auto;
+    flex-direction: row-reverse;
+
+}
+
+.chat-route {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 0px solid;
+    border-radius: 0px solid;
+    border: 0px;
+}
+.message-container{
+    /* background-color:rgb(204, 223, 246); */
+    font: sans-serif;
+    margin: 5px auto;
+    padding: 5px auto;
+    flex-direction: row;
+    font-weight: small;
+}
+.message-time-container{
+    font-size:xx-small;
+    color:black;
+}
+.message{
+    flex-direction: row;
+    background-color:rgb(204, 223, 246);
+
 }

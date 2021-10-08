@@ -101,18 +101,20 @@ export default function Nav() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" style={{ background: (144, 54, 37 ) }} >
         <Toolbar>
-          <Link to="/home">
-            <Typography
-              className="nav-title"
-              position="flex"
-              component="div"
-              sx={{ flexGrow: 0.8 }}
-            >
-              Q-ware
-            </Typography>
-          </Link>
+          <Box>
+          <IconButton size="large" color="secondary">
+              {user.id && (
+                <Link className="navLink-Home" to="/user">
 
-          <Box sx={{ flexGrow: 1 }} />
+                Q-ware
+                </Link>
+              )}
+            </IconButton>
+          </Box>
+
+          
+
+          <Box sx={{ flexGrow: 2 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             {/* If a user is logged in, show these links */}
             <IconButton size="large" color="secondary">
@@ -171,3 +173,20 @@ export default function Nav() {
     </Box>
   );
 }
+
+
+
+// <Link to="/home">
+//             {/* <Typography
+//               className="nav-title"
+//               position="flex"
+//               component="div"
+//               sx={{ flexGrow: 0.8 }}
+//             >
+//             <img alt="logo" src={"../favicon.ico"} class="image-icon"/> Q-ware
+//             </Typography> */}
+//             <Typography variant="h4" align="center" className="Chat-title">
+//         <img alt="logo" src={"../favicon.ico"} class="image-icon"/> Q-ware
+//         </Typography>
+//         <br />
+//           </Link>
