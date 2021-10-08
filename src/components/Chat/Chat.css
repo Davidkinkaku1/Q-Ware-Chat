@@ -34,15 +34,21 @@ form{
     margin:auto;
 }
 .chat-content-container{
-    background-color:rgb(241, 241, 241);
+    background-color:rgb(246, 251, 250);
     flex-direction: row-reverse;
     font-weight: small;
     margin: 5px auto;
     padding: 5px auto;
     flex-direction: row-reverse;
-
+    width: 90%;
+    min-height: auto;
+    align-items: left;
+    justify-content:flex-start;
 }
-
+#chat-s{
+    align-items: left;
+    justify-content:flex-start;
+}
 .chat-route {
     display: flex;
     flex-direction: column;
@@ -50,20 +56,23 @@ form{
     border-radius: 0px solid;
     border: 0px;
 }
-.message-container{
+.message-container-paper{
     /* background-color:rgb(204, 223, 246); */
-    font: sans-serif;
-    margin: 5px auto;
-    padding: 5px auto;
+    font-style:oblique;
+    margin: 3px auto;
+    padding: 3px auto;
     flex-direction: row;
-    font-weight: small;
+    font-size:medium;
+    left: 0%;
+    align-items: left;
+    justify-content:flex-start;
 }
 .message-time-container{
     font-size:xx-small;
     color:black;
+    right: auto;
 }
-.message{
-    flex-direction: row;
-    background-color:rgb(204, 223, 246);
-
+.chat-item-vote{
+    padding: 5px;
+    margin:5px;
 }

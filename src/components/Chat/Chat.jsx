@@ -2,13 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import {
-  Button,
-  Typography,
-  Container,
-  TextField,
-
-} from "@material-ui/core";
+import { Button, Typography, Container, TextField } from "@material-ui/core";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DoneIcon from "@mui/icons-material/Done";
 import SendIcon from "@mui/icons-material/Send";
@@ -40,7 +34,7 @@ function Chat() {
     (conversation) => conversation.url === chatId
   );
   // setting a state for my messages.
-  let [newMessage, setNewMessage] = useState('');
+  let [newMessage, setNewMessage] = useState("");
 
   useEffect(() => {
     console.log("this is the chatId, that worries me", chatId);
@@ -52,9 +46,9 @@ function Chat() {
     //     console.log('This will run every second!');
     //   }, 1000);
     //   return () => clearInterval(interval);
+      //  const objDiv = document.getElementById("page-container");
+      // objDiv.scrollTop = objDiv.scrollHeight;
   }, []);
-
-  
 
   const addNewMessage = (event) => {
     event.preventDefault();
@@ -68,7 +62,7 @@ function Chat() {
         conversation_id: chatId,
       },
     });
-    setNewMessage('');
+    setNewMessage("");
   };
 
   const isAnswered = (id) => {
@@ -81,7 +75,6 @@ function Chat() {
         conversation_id: chatId,
       },
     });
-
   };
   const votes = (id, direction) => {
     // works to change the respond to answered
@@ -115,65 +108,83 @@ function Chat() {
     );
   } else {
     return (
-      <Container align="center" className="page-conta">
+      <Container align="center" className="page-container">
         <Typography variant="h4" align="center" className="Chat-title">
-        <img alt="logo" src={"../favicon.ico"} class="image-icon"/> Q-ware chat
+          <img alt="logo" src={"../favicon.ico"} class="image-icon" /> Q-ware
+          chat
         </Typography>
         <br />
         <Container className="chat-container">
           {allMessages.map((message, i) => (
-            <div key={i} className="chat-content-container" id="chat-s">
-              <div className="message-container-votes">
-              <ArrowDropUpIcon onClick={() => votes(message.id, "up")} />
-                <div className="message-votes-count">
-              {message.votes}
-              </div>
-              </div >
-              <div className="message-container-paper"> {message.message} </div>
-              <div className="message-time-container">
-                sent {moment(`${message.sent_at}`).fromNow()}
-              </div>
-              {user?.id && (
-                <>
-                  <div
-                    className="chat-container-done"
-                    onClick={() => isAnswered(message.id)}
-                  >
-                    <DoneIcon
-                      fontSize="small"
-                      variant="Outlined"
-                      color="success"
-                      size="small"
-                    />
-                  </div>
+            <table key={i} className="chat-content-container" id="chat-s">
+              <tr>
+                <td >
+                  <ArrowDropUpIcon onClick={() => votes(message.id, "up")} />
+                <td className="chat-item-vote"> {message.votes}</td> 
+                </td>
+                <td className="message-container-paper">
+                  {" "}
+                  {message.message}{" "}
+                <td className="message-time-container">
+                  sent {moment(`${message.sent_at}`).fromNow()}
+                </td>
+                </td>
+                {user?.id && (
+                  <> 
+                    <td
+                      className="chat-container-done"
+                      onClick={() => isAnswered(message.id)}
+                    >
+                    <td>
+                      <DoneIcon
+                        fontSize="small"
+                        variant="Outlined"
+                        color="success"
+                        size="small"
+                      />
+                    <td className="message-container-delete">
+                      <DeleteIcon
+                        fontSize="small"
+                        variant="contained"
+                        size="small"
+                        onClick={() => deleteMessage(message.id)}
+                      />
+                    </td>
+                    </td>
 
-                  <div className="message-container-delete">
-                    <DeleteIcon
-                      fontSize="small"
-                      variant="contained"
-                      size="small"
-                      onClick={() => deleteMessage(message.id)}
-                    />
-                  </div>
-                </>
-              )}
-            </div>
+
+
+
+                    </td>
+
+                  </>
+                )}
+              </tr>
+            </table>
           ))}
         </Container>
 
-                    {/* {TextField} */}
+        {/* {TextField} */}
         <form onSubmit={addNewMessage}>
           <Container className="chat-route">
             <TextField
               fullWidth={true}
-                required={true}
+              required={true}
               label="send a message"
               id="input-fullWidth"
               value={newMessage}
               type="text"
-              onChange={(event)=> setNewMessage(event.target.value)}
+              onChange={(event) => setNewMessage(event.target.value)}
               align="bottom"
-              style={{ display:"flex", alignItems:"flex-end", justifyContent:"center"}}
+              style={{
+                position: "fixed",
+                bottom: "0",
+                left: "0",
+                backgroundColor: "white"
+                // display: "flex", 
+               // alignItems: "flex-end",
+               // justifyContent: "center",
+              }}
               autoFocus={true}
               variant="outlined"
               autoCorrect="string"

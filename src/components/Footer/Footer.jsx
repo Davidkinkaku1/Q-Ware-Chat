@@ -8,12 +8,6 @@ import './Footer.css';
 
 function Footer() {
   return (
-    
-  
-  
-  
-  
-  
   
   <footer>&copy;  Q-ware Chat</footer>);
 }
