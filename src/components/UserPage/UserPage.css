@@ -21,3 +21,8 @@ h2{
     font-size:large;
     font-family: Garamond, serif;
 }
+.conversation-card{
+    width:25%;
+    display:inline-block;
+  
+}
