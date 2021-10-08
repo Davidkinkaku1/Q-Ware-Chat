@@ -60,12 +60,13 @@ let serverName = window.location.origin
         <button onClick={randomizeLink}> Start a Q-Ware Rom</button>
         <p>These are all your Q-Ware Chats!</p>
         {userLinks.map((link, i) => (
-          <tr>
-          <td key={i} className="links"> <a href= {`${serverName}/#/chat/${link.url}`}>{`${serverName}/#/chat/${link.url}`}</a></td>
-          <td> {<button onClick={() =>removeUrl(link.id)}>delete</button>}
-          </td>
-          <td>   <Qrcode /></td>
-          </tr>
+          <div class="conversation-card">
+          <a href= {`${serverName}/#/chat/${link.url}`}>{`${serverName}/#/chat/${link.url}`}</a>
+         <button onClick={() =>removeUrl(link.id)}>delete</button>
+        
+          <Qrcode url= {`${serverName}/#/chat/${link.url}`} />
+        </div>
+          
         ))}
         <br/>
         <div className="linker-container-qr-code"> 

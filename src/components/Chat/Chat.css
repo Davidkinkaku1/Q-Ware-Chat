@@ -21,13 +21,13 @@
 
 .page-container{
 background-color:rgb(255, 255, 255);
-max-width: 200%;
+max-width: 100%;
 height: auto;
 
 }
 
 body {
-    background-color:rgb(246, 251, 250)
+    background-color:rgb(255, 255, 255)
 }
 
 form{
@@ -45,7 +45,8 @@ form{
     align-items: left;
     justify-content:flex-start;
     font-weight: normal;
-    border:none;
+    word-break: break-word;
+
 }
 #chat-s{
     align-items: left;
@@ -81,12 +82,14 @@ form{
 .chat-container{
     overflow:scroll;
     height:60%;
-    background-color:rgb(246, 251, 250);
 
 }
 .page-container, #app-container {
     height:100%;
+    
 }
+
+
 .answer-true{
     background-color:rgb(145, 202, 224)
 }

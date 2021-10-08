@@ -134,7 +134,7 @@ function Chat() {
             <table key={i} className="chat-content-container" id="chat-s">
               
               <tr className={message.is_answered=== true ? "answer-true": ""}>
-                <td >
+                <td width="3%">
                   <ArrowDropUpIcon onClick={() => votes(message.id, "up")} />
                 <td className="chat-item-vote"> {message.votes}</td> 
                 </td>
@@ -147,7 +147,7 @@ function Chat() {
                 </td>
                 {user?.id && (
                   <> 
-                    <td
+                    <td width="5%"
                       className="chat-container-done"
                       onClick={() => isAnswered(message.id)}
                     >
