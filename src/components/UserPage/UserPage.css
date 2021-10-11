@@ -11,11 +11,15 @@
     font-family: Garamond, serif;
 }
 .linker {
-    padding:5%;
-    margin-left: auto; 
+    padding:6%;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    margin-right: auto; 
+    padding-bottom: 5%;
     font-size:large;
     font-family: Garamond, serif;
-    background-color: rgb(235, 235, 235)
+    display: row;
+
 }
 h2{
     font-size:large;
@@ -24,5 +28,4 @@ h2{
 .conversation-card{
     width:25%;
     display:inline-block;
-  
 }
