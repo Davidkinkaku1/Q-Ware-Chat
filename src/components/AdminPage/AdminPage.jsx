@@ -9,6 +9,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import "./AdminPage.css"
 
 function AdminPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -33,21 +34,12 @@ function AdminPage() {
   };
 
 
-  const bull = (
-    <Box
-      component="span"
-      sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-    >
-      •
-    </Box>
-  );
-
   return (
     <>
       <div className="admin-container">
-        <h2> Q-Ware Admin, {user.username}!</h2>
-        <p>Your ID is: {user.id}</p>
-        <LogOutButton className="btn" />
+        <h2> Admin, {user.username}!</h2>
+        {/* <p>Your ID is: {user.id}</p> */}
+        {/* <LogOutButton className="btn" /> */}
       </div>
 
   
@@ -56,7 +48,7 @@ function AdminPage() {
         <br />
         <p>These are all your Q-Ware Users and Their Chats!</p>
 
-        <table className="userList">
+        <table className="userList" >
           <thead>
             <tr>
               <th>User Id</th>
@@ -69,10 +61,10 @@ function AdminPage() {
             {allUsersUrl.map((item, i) => {
               return (
                 <tr key={i}>
-                  <td>{item.id}</td>
-                  <td>{item.username}</td>
-                  <td>{item.url}</td>
-                  <td>{<button onClick={() =>removeUrl(item.conversation_id)}>delete</button>}</td>
+                  <td width="25%">{item.id}</td>
+                  <td width="25%">{item.username}</td>
+                  <td width="25%">{item.url}</td>
+                  <td width="25%">{<button onClick={() =>removeUrl(item.conversation_id)}>delete</button>}</td>
                 </tr>
               );
             })}

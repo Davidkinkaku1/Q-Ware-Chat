@@ -5,7 +5,7 @@
   align-items: center;
 
   margin: 0 0 10px;
-  background-color: #97b9b9;
+
   overflow: hidden;
 
 } 
@@ -16,15 +16,6 @@
 }
 
 
-/* .nav-title {
-  font-size: 10px;
-  font-weight: 100px;
-  color: #000000;
-  padding-left: 1px;
-  margin: 12;
-  background-color:transparent;
-
-} */
 
 .navLink {
   display: block;
