@@ -45,12 +45,12 @@ function Chat() {
     console.log("this is the chatId, that worries me", chatId);
     dispatch({ type: "FETCH_MESSAGES", payload: chatId });
 
-    // const interval = setInterval(() => {
+    const interval = setInterval(() => {
 
-    //   dispatch({ type: "FETCH_MESSAGES", payload: chatId });
-    //     console.log('This will run every second!');
-    //   }, 1000);
-    //   return () => clearInterval(interval);
+      dispatch({ type: "FETCH_MESSAGES", payload: chatId });
+        console.log('This will run every second!');
+      }, 1000);
+      return () => clearInterval(interval);
     
   }, []);
 
