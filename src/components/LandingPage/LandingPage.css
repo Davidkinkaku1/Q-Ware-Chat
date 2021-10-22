@@ -1,7 +1,10 @@
 /* --------------------------------------------------------------------------------
 Grid
 -------------------------------------------------------------------------------- */
+body {
+  background-color:rgb(255, 255, 255);
 
+}
 .grid {
   display: flex;
   flex: 0 1 auto;
@@ -17,6 +20,7 @@ Grid
   flex: 0 0 auto;
   padding: 0 0.5rem 0.5rem;
   box-sizing: border-box;
+
 }
 
 .grid-col_1 {
@@ -35,8 +39,10 @@ Grid
 }
 
 .grid-col_4 {
-  flex-basis: 33.33333333%;
-  max-width: 33.33333333%;
+  flex-basis: auto;
+  max-width: 100%;
+  position: center;
+
 }
 
 .grid-col_5 {
@@ -55,8 +61,8 @@ Grid
 }
 
 .grid-col_8 {
-  flex-basis: 66.66666667%;
-  max-width: 66.66666667%;
+  flex-basis: auto;
+  max-width: auto;
 }
 
 .grid-col_9 {
@@ -77,4 +83,9 @@ Grid
 .grid-col_12 {
   flex-basis: 100%;
   max-width: 100%;
+}
+.container {
+  max-width: auto;
+  background-color:rgb(255, 255, 255);
+
 }

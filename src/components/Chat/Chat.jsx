@@ -168,9 +168,6 @@ function Chat() {
                     </td>
                     </td>
 
-
-
-
                     </td>
 
                   </>
@@ -219,6 +216,18 @@ function Chat() {
                     )}
                   </InputAdornment>
                 ),
+                /* startAdornment: (
+                  <InputAdornment position="start" component="div">
+                  <Button
+                        color="primary"
+                        type="submit"
+                        onClick={disableTextField} // handle the disable the chat
+                        className="btn-send"
+                      >
+                      
+                      </Button>
+                  </InputAdornment>
+                ) */
               }}
             />
           </Container>
