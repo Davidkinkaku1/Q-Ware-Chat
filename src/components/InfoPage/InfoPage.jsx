@@ -8,12 +8,9 @@ import React from 'react';
 function InfoPage() {
   return (
     <div className="container">
-      <p>Info Page</p>
+      <p>Continiously working to ameliorate the application as well as adding more features, such as ability to lock the chat and expiration on chat links.</p>
       <br/>
-      <table> 
-
-        
-      </table>
+     
     </div>
   );
 }
