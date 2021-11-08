@@ -7,11 +7,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import DoneIcon from "@mui/icons-material/Done";
 import SendIcon from "@mui/icons-material/Send";
 import InputAdornment from "@mui/material/InputAdornment";
-// import { withStyles } from "@material-ui/core/styles";
-// import {makeStyles} from '@material-ui/core/styles'
-// import { Box } from "@mui/system";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-// import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { useHistory } from "react-router";
 import "./Chat.css";
 
